@@ -137,10 +137,13 @@ void Graph::printEdges()
 
 void Graph::degreeCentrality()
 {
-    for (auto i : Nodes) {
-        cout << i.first << " : " << endl;
-        cout << "   InDegree  ==> " << adjacency_list[i.first][1].size() << endl;
-        cout << "   OutDegree ==> " << adjacency_list[i.first][0].size() << endl;
+    for (auto& i : Nodes) {
+        i.second.degree = adjacency_list[i.first][1].size() + adjacency_list[i.first][0].size();
+        //cout << i.second.degree << endl;
+
+//        cout << i.first << " : " << endl;
+//        cout << "   InDegree  ==> " << adjacency_list[i.first][1].size() << endl;
+//        cout << "   OutDegree ==> " << adjacency_list[i.first][0].size() << endl;
     }
 }
 
@@ -165,8 +168,8 @@ void Graph::degreeCentrality()
 
 void Graph::printNodes()
 {
-    for (auto i : Nodes) {
-        cout << i.first << " : " << i.second.x << ", " << i.second.y << endl;
+    for (const auto& i : Nodes) {
+        cout << i.first << " : " << i.second.x << ", " << i.second.y << ", " << i.second.degree << endl;
     }
 }
 
@@ -174,4 +177,16 @@ void Graph::print(string id)
 {
     for (int i = 0; i < adjacency_list[id][0].size(); i++)
         cout << adjacency_list[id][0][i] << endl;
+}
+
+const map<string, Node> &Graph::getNodes() const {
+    return Nodes;
+}
+
+const map<string, vector<string>[2]> &Graph::getAdjacencyList() const {
+    return adjacency_list;
+}
+
+const map<pair<string, string>, Edge> &Graph::getEdges() const {
+    return Edges;
 }

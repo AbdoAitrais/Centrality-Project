@@ -17,7 +17,7 @@ typedef struct
     double x;
     double y;
     int betweenness;
-
+    int degree;
 }Node;
 
 typedef struct
@@ -39,6 +39,12 @@ public:
     void degreeCentrality();
     void dijkstra(string source);
     void betweennessCentrality();
+
+    const map<string, Node> &getNodes() const;
+
+    const map<string, vector<string>[2]> &getAdjacencyList() const;
+
+    const map<pair<string, string>, Edge> &getEdges() const;
 
 private:
     //** Les nodes sont identifiés par une chaine de caractéres
