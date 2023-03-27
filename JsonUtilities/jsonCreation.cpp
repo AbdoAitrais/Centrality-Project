@@ -15,7 +15,6 @@ using namespace rapidjson;
 
 
 void createJsonFile(map<string,Node> nodes) {
-    // Load your graph data into a vector of Node structs
 
     // Create a RapidJSON document to hold the GeoJSON data
     Document document;
@@ -42,7 +41,7 @@ void createJsonFile(map<string,Node> nodes) {
         Value properties(kObjectType);
         properties.AddMember("id", Value().SetString(node.second.id.c_str(), node.second.id.length(), document.GetAllocator()), document.GetAllocator());
         properties.AddMember("degree", node.second.degree, allocator);
-//        properties.AddMember("betweenness", node.second.betweenness, allocator);
+        properties.AddMember("eigenvector", node.second.eigenvector, allocator);
 
         // Add the geometry and properties to the feature
         feature.AddMember("type", "Feature", allocator);
